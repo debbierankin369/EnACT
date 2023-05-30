@@ -32,9 +32,10 @@ for x in range(numColsHandParse):
     handParse = subset2[colName].str.split(',',expand=True).rename(columns={0:colName+'_x', 1:colName+'_y', 2:colName+'_z'})
     appended_data.append(handParse)
 
+# put it all back together again
 concat_data = pd.concat(appended_data, axis=1)
-
 handParseFinal = pd.concat([subset1, concat_data], axis = 1)
 
+#write parsed version to csv
 handParseFinal.to_csv('euler_parsed.csv', index=False)
 
